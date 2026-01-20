@@ -38,7 +38,7 @@ public class Interfaz {
 
         } while (operacionInvalida);
 
-        return Moneda.values()[indiceMoneda];
+        return Moneda.values()[indiceMoneda - 1];
     }
 
     public float solicitarMonto() {
