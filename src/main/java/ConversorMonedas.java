@@ -34,7 +34,7 @@ public class ConversorMonedas {
 
     public static void main(String[] args) {
         Interfaz interfazUsuario = new Interfaz();
-        API conversionAPI = new API("444ae7ca1191553a6c20f7f7");
+        API conversionAPI = new API("Ingresar aqui la API key");
         ConversorMonedas conversorMonedas = new ConversorMonedas(interfazUsuario, conversionAPI);
 
         conversorMonedas.iniciar();
