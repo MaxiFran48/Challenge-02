@@ -2,7 +2,7 @@ plugins {
     id 'java'
 }
 
-group = 'com.utn'
+group = 'com.one'
 version = '1.0-SNAPSHOT'
 
 repositories {
@@ -15,8 +15,49 @@ dependencies {
     testRuntimeOnly 'org.junit.platform:junit-platform-launcher'
     // https://mvnrepository.com/artifact/com.google.code.gson/gson
     implementation 'com.google.code.gson:gson:2.13.2'
+    // Source: https://mvnrepository.com/artifact/tools.jackson.core/jackson-databind
+    implementation 'tools.jackson.core:jackson-databind:3.0.3'
+    // Source: https://mvnrepository.com/artifact/org.projectlombok/lombok
+    compileOnly 'org.projectlombok:lombok:1.18.42'
+    annotationProcessor 'org.projectlombok:lombok:1.18.42'
+
 }
 
 test {
     useJUnitPlatform()
 }
+
+
+//Fat JAR
+jar {
+    manifest {
+        attributes('Main-Class': 'ConversorMonedas')
+    }
+
+    duplicatesStrategy = DuplicatesStrategy.EXCLUDE
+
+    from {
+        configurations.runtimeClasspath.collect {it.isDirectory() ? it : zipTree(it)}
+    }
+
+}
+
+
+//Classpath JAR
+//jar {
+//    manifest {
+//        attributes(
+//                'Main-Class': 'ConversorMonedas',
+//                'Class-Path': configurations.runtimeClasspath.files.collect { "lib/" + it.name }.join(' ')
+//        )
+//    }
+//}
+//
+//// Tarea para copiar las dependencias a una carpeta 'lib' que estará junto al JAR
+//tasks.register('copyDependencies', Copy) {
+//    from configurations.runtimeClasspath
+//    into "build/libs/lib"
+//}
+//
+//// Hacemos que la tarea 'build' dependa de nuestra nueva tarea de copiado
+//build.dependsOn copyDependencies
