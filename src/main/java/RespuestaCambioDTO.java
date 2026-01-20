@@ -1,8 +1,8 @@
 import com.google.gson.annotations.SerializedName;
 import lombok.Data;
-import lombok.Getter;
 
-public class ContenidoRespuestaCambio {
+@Data
+public class RespuestaCambioDTO {
 
     private String result;
     private String documentation;
@@ -29,10 +29,9 @@ public class ContenidoRespuestaCambio {
     private String targetCode;
 
     @SerializedName("conversion_rate")
-    private double conversionRate;
+    private float conversionRate;
 
-    @Getter
     @SerializedName("conversion_result")
-    private double conversionResult;
+    private float conversionResult;
 
 }
